@@ -1,5 +1,6 @@
 using Application.Services;
 using Core.Interfaces;
+using Infrastructure.HostedServices;
 using Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<MessageRepository>(provider =>
     new MessageRepository(builder.Configuration["ServiceBus:ConnectionString"], builder.Configuration["ServiceBus:QueueName"]));
+
+// Register the hosted service
+builder.Services.AddHostedService<ServiceBusHostedService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
