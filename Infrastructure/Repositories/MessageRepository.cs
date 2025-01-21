@@ -28,7 +28,7 @@ namespace Infrastructure.Repositories
 
 
         //This approach is configured as a request-response pattern.
-        //Disable the hosted service is needed if you want to use this approach
+        //If you want to use this approach disable the hosted service commenting its registration 
         public async Task<IEnumerable<Message>> GetMessagesAsync()
         {
             var messages = new List<Message>();
